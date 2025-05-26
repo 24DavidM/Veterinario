@@ -2,6 +2,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import routerVeterinario from './routers/veterinario.router.js'
 
 // INICIALIZAR
 const app = express()
@@ -15,9 +16,12 @@ app.use(cors())
 app.use(express.json())
 
 //RUTAS
-app.get('/inde',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send("Server On")
 })
+
+//RUTAS para veterinaria
+app.use('/api',routerVeterinario)
 
 
 //EXPORTACION A LA INSTANCIA DE LA APPs
