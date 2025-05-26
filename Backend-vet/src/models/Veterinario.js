@@ -54,4 +54,11 @@ const veterinarioSchema = new Schema(
     timestamps: true,
   }
 );
+
+//Métodos
+veterinarioSchema.methods.encrypPassword = function (){
+  const salt = bcrypt.genSalt(10)
+  const passwordEncrypt = bcrypt.hash(password,salt)
+  return passwordEncrypt
+}
 export default model("Veterinario", veterinarioSchema);
