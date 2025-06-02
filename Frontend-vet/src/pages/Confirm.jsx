@@ -18,6 +18,7 @@ export const Confirm = () => {
             toast.error(error?.response?.data?.msg)
         }
     }
+    
     useEffect(() => {
         verifyToken()
     },[])
