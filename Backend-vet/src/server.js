@@ -22,6 +22,7 @@ app.get('/',(req,res)=>{
 
 //RUTAS para veterinaria
 app.use('/api',routerVeterinario)
+app.use((req,res)=>res.status(404).send("Endpoint no encontrado - 404"))
 
 
 //EXPORTACION A LA INSTANCIA DE LA APPs

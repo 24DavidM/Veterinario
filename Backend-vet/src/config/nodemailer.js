@@ -14,14 +14,13 @@ let transporter = nodemailer.createTransport({
 });
 
 const sendMailToRegister = (userMail, token) => {
-
+    
     let mailOptions = {
-        from: 'admin@vet.com',
+        from: process.env.USER_MAILTRAP,
         to: userMail,
         subject: "SmartVET -🐶 😺",
-        html: `<p>Hola, haz clic <a href="${process.env.URL_BACKEND}confirmar/${token}">aquí</a> para confirmar tu cuenta.</p>
-        <hr> <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQd1kWKsODGmz1P44kiLTfpeIOkaemYITnaRVOZEn372xCyrpNoQQ_dMDAV4dWLpVTDFekNEtlkJaDnhlTzoQWdNg" alt="Girl in a jacket" width="500" height="600">
-        <footer>El equipo de SmartVET te da la más cordial bienvenida.</footer>
+        html: `<p>Hola, haz clic <a href="${process.env.URL_FRONTEND}confirm/${token}">aquí</a> para confirmar tu cuenta.</p>
+        El equipo de SmartVET te da la más cordial bienvenida.
         `
     }
 

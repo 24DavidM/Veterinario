@@ -18,14 +18,24 @@ const registro = async (req, res) => {
 
     nuevoVeterinario.password = await nuevoVeterinario.encrypPassword(password);
 
-    const token = nuevoVeterinario.createToken();
+    const token = nuevoVeterinario.crearToken()
     sendMailToRegister(email,token)
-
-    await nuevoVeterinario.save();
-
+    await nuevoVeterinario.save()
     res.status(200).json({msg:"Revisa tu correo electrónico para confirmar tu cuenta"})
+    };
 
-};
-export{
-    registro
-} 
+const confirmarMail = async (req,res)=>{
+    const token = req.params.token
+    const veterinarioBDD = await Veterinario.findOne({token})
+    if(!veterinarioBDD?.token) return res.status(404).json({msg:"La cuenta ya ha sido confirmada"})
+    veterinarioBDD.token = null
+    veterinarioBDD.confirmEmail=true
+    await veterinarioBDD.save()
+    res.status(200).json({msg:"Token confirmado, ya puedes iniciar sesión"}) 
+}
+
+
+export {
+    registro,
+    confirmarMail,
+}
